@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class healthBar : MonoBehaviour
-{
+public class healthBar : MonoBehaviour {
+    [SerializeField] private gameOver gameOver;
     [SerializeField] private int _maxHealth = 1;
     public int _health = 1;
 
@@ -23,14 +23,17 @@ public class healthBar : MonoBehaviour
 
         _health = _maxHealth;
 
-        TakeDamage(1);
-
     }
 
     public void TakeDamage(int damageAmount) {
-        for (int i = _health - 1; i >= ((_health - damageAmount) >= 0 ? (_health - damageAmount) : 0); i--)
-        {
+        for (int i = _health - 1; i >= ((_health - damageAmount) >= 0 ? (_health - damageAmount) : 0); i--) {
             _hearts[i].GetComponent<Image>().color = Color.gray;
+        }
+        
+        _health -= damageAmount;
+        
+        if (_health <= 0) {
+            gameOver.gameOverScreen();
         }
     }
 }
