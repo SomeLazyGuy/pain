@@ -3,22 +3,20 @@ using UnityEngine.UI;
 
 public class Finish : MonoBehaviour
 {
-    [SerializeField] private Text yourText; // Insert your text object inside unity inspector
+    [SerializeField] private Text yourText; 
 
     void Start()
     {
-        yourText.enabled = false; // You may need to use .SetActive(false);
+        yourText.enabled = false; 
     }
 
 
-// Assuming you're using a 2D platform
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("Collision");
-// This is where you make your text object appear on screen
-            yourText.enabled = true; // May need to use .SetActive(true);
+            yourText.enabled = true; 
             Time.timeScale = 0;
         }
     }
