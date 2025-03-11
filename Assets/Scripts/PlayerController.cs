@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     private Vector2 _moveDirection = Vector2.zero;
     private float _jumpVelocity;
     private bool _isGrounded;
-    private bool _isGroundPound = false;
+    public bool _isGroundPound { get; private set; }
     
     private void Start() {
         _rb = GetComponent<Rigidbody2D>();
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 
     public void Jump(InputAction.CallbackContext context)
     {
-        Debug.Log("Test");
         if (context.started)
         {
             if (!_isGrounded)
@@ -45,7 +44,7 @@ public class PlayerController : MonoBehaviour {
                 GroundPound();
                 return;
             }
-            Debug.Log("Jump");
+
             _jumpVelocity = jumpForce;
         }
     }
@@ -88,12 +87,24 @@ public class PlayerController : MonoBehaviour {
         if (other.CompareTag("Ground")) {
             _isGrounded = true;
             _isGroundPound = false;
+        } 
+        if (other.CompareTag("Destructable")) {
+            if (_isGroundPound) {
+                Destroy(other.gameObject);
+            } else
+            {
+                _isGrounded = true;
+            }
         }
     }
     
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Ground")) {
             _isGrounded = false; 
+        }
+        if (other.CompareTag("Destructable"))
+        {
+            _isGrounded = false;
         }
     }
 }

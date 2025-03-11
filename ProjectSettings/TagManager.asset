@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Collectable
   - Heart
+  - Destructable
   layers:
   - Default
   - TransparentFX
