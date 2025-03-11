@@ -21,7 +21,14 @@ public class PlayerHealth : MonoBehaviour {
       
       if (collision.gameObject.CompareTag("Obstacle")) {
          obstacle obstacle = collision.gameObject.GetComponent<obstacle>();
-         healthBar.TakeDamage(obstacle.damageAmount);
+         if (_playerController._isGroundPound)
+         {
+            healthBar.TakeDamage(2*obstacle.damageAmount);
+         }
+         else
+         {
+            healthBar.TakeDamage(obstacle.damageAmount);
+         }
          StartCoroutine(Immunity());
       }
    }
