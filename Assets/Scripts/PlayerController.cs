@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 
         if (transform.position.y < -10)
         {
-            Debug.Log("Dead");
             canvas.GetComponent<gameOver>().gameOverScreen();
         }
     }
