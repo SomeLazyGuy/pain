@@ -805,6 +805,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 80764491}
+    - target: {fileID: 4668197026193049146, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: immunityTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8355354374728131628, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: points
       value: 
