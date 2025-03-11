@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
             transform.Rotate(0, 0, _moveDirection.y * rotationSpeed, Space.Self);    
         }
 
-        if (airControl) {
+        if (!airControl) {
             if (_isGrounded) {
                 _rb.linearVelocity = new Vector2(_moveDirection.x * moveSpeed, _jumpVelocity);
             } else {
