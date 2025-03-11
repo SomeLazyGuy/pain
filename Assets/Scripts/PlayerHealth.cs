@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour {
    private void OnCollisionEnter2D(Collision2D collision) {
       if (collision.gameObject.CompareTag("Obstacle")) {
          obstacle obstacle = collision.gameObject.GetComponent<obstacle>();
-         //gameController.ApplyDamage(obstacle.damageAmount);
          healthBar.TakeDamage(obstacle.damageAmount);
       }
    }
