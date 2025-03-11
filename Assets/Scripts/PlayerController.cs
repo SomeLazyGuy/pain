@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private float jumpTime = 1f;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private float rotSpeed = 1f;
     
     private Rigidbody2D _rb;
     private Vector2 _moveDirection = Vector2.zero;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour {
         _moveDirection = context.ReadValue<Vector2>();
     }
     
+    
     public void Jump(InputAction.CallbackContext context) {
         if (_jumping || !_isGrounded) {
             return;
@@ -30,7 +32,10 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(Accelerate());
     }
     
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
+        //  transform.rotation = Quaternion.Euler(0,0,rotSpeed * _moveDirection.y);
+        
         if (_jumping) {
             _moveDirection.y = jumpSpeed;
         } else {
