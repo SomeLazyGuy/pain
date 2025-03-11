@@ -111,6 +111,7 @@ MonoBehaviour:
   jumpDeceleration: 0.2
   rotationSpeed: 5
   canvas: {fileID: 0}
+  airControl: 1
 --- !u!114 &4668197026193049146
 MonoBehaviour:
   m_ObjectHideFlags: 0

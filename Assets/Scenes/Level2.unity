@@ -1722,6 +1722,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1313461275}
+    - target: {fileID: 8607526061797846858, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: airControl
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
