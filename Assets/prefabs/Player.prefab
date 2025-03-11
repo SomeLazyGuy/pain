@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpSpeed: 2
-  jumpTime: 0.2
+  jumpForce: 10
+  jumpDeceleration: 0.2
+  rotationSpeed: 5
   canvas: {fileID: 0}
 --- !u!114 &4668197026193049146
 MonoBehaviour:
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7ad34e07c81439f9a167fd2bc1c582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
 --- !u!114 &8355354374728131628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72380c8bae46242d580edd156992a33e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: {fileID: 0}
 --- !u!50 &1186965891519054707
 Rigidbody2D:
   serializedVersion: 5
