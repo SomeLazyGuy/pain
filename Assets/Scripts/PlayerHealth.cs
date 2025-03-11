@@ -33,4 +33,11 @@ public class PlayerHealth : MonoBehaviour {
       _isImmune = false;
       _animator.SetBool("immune", false);
    }
+   
+   private void OnTriggerEnter2D(Collider2D other) {
+      if (other.CompareTag("Heart")) {
+         healthBar.Heal(other.GetComponent<Heart>().amount);
+         Destroy(other.gameObject);
+      }
+   }
 }
