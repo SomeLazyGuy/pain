@@ -635,6 +635,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 419854965771982712, guid: 2602a3acffdb1094aaa34c48a27c99e0, type: 3}
+      propertyPath: knockbackAmount
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5562028593338394616, guid: 2602a3acffdb1094aaa34c48a27c99e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.3199716
@@ -812,6 +816,10 @@ PrefabInstance:
     - target: {fileID: 8607526061797846858, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: jumpSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607526061797846858, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: airControl
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

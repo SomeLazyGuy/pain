@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
+    [SerializeField] private bool airControl = true;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float jumpDeceleration = 5f;
     [SerializeField] private float rotationSpeed = 1f;
+    [SerializeField] private float knockbackResistance = 5f;
     [SerializeField] private GameObject canvas;
-    [SerializeField] private bool airControl;
 
     private Rigidbody2D _rb;
     private Vector2 _moveDirection = Vector2.zero;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour {
         if (_jumpVelocity < 0) {
             _jumpVelocity = 0;
         }
-
+        
         if (transform.position.y < -10) {
             canvas.GetComponent<gameOver>().gameOverScreen();
         }
