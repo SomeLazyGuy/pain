@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D _rb;
     private Vector2 _moveDirection = Vector2.zero;
     private float _jumpVelocity;
-    private bool _jumping;
     private bool _isGrounded;
+    private bool _isGroundPound = false;
     
     private void Start() {
         _rb = GetComponent<Rigidbody2D>();
@@ -26,12 +26,33 @@ public class PlayerController : MonoBehaviour {
         _moveDirection = context.ReadValue<Vector2>();
     }
     
-    public void Jump(InputAction.CallbackContext context) {
-        if (_jumping || !_isGrounded) {
-            return;
+    //public void Jump(InputAction.CallbackContext context) {
+    //    if (!_isGrounded) {
+    //        return;
+    //    }
+//
+    //    Debug.Log(context);
+    //    _jumpVelocity = jumpForce;
+    //}
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        Debug.Log("Test");
+        if (context.started)
+        {
+            if (!_isGrounded)
+            {
+                GroundPound();
+                return;
+            }
+            Debug.Log("Jump");
+            _jumpVelocity = jumpForce;
         }
-        
-        _jumpVelocity = jumpForce;
+    }
+
+    public void GroundPound() {
+        _jumpVelocity = -jumpForce;
+        _isGroundPound = true;
     }
     
     private void FixedUpdate() {
@@ -50,10 +71,14 @@ public class PlayerController : MonoBehaviour {
         }
         
         _jumpVelocity -= jumpDeceleration;
-        if (_jumpVelocity < 0) {
-            _jumpVelocity = 0;
+        if (!_isGroundPound)
+        {
+            if (_jumpVelocity < 0)
+            {
+                _jumpVelocity = 0;
+            }
         }
-        
+
         if (transform.position.y < -10) {
             canvas.GetComponent<gameOver>().gameOverScreen();
         }
@@ -61,7 +86,8 @@ public class PlayerController : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Ground")) {
-            _isGrounded = true; 
+            _isGrounded = true;
+            _isGroundPound = false;
         }
     }
     
