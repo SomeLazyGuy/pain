@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private float jumpTime = 1f;
+    [SerializeField] private GameObject canvas;
     
     private Rigidbody2D _rb;
     private Vector2 _moveDirection = Vector2.zero;
@@ -37,6 +38,12 @@ public class PlayerController : MonoBehaviour {
         }
         
         _rb.linearVelocity = _moveDirection * moveSpeed;
+
+        if (transform.position.y < -10)
+        {
+            Debug.Log("Dead");
+            canvas.GetComponent<gameOver>().gameOverScreen();
+        }
     }
     
     private IEnumerator Accelerate() {
