@@ -5,13 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpSpeed = 5f;
-    [SerializeField] private float jumpTime = 1f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float jumpDeceleration = 5f;
+    [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private GameObject canvas;
-    [SerializeField] private float rotSpeed = 1f;
     
     private Rigidbody2D _rb;
     private Vector2 _moveDirection = Vector2.zero;
+    private float _jumpVelocity;
     private bool _jumping;
     private bool _isGrounded;
     
@@ -23,43 +24,34 @@ public class PlayerController : MonoBehaviour {
         _moveDirection = context.ReadValue<Vector2>();
     }
     
-    
     public void Jump(InputAction.CallbackContext context) {
         if (_jumping || !_isGrounded) {
             return;
         }
         
-        StartCoroutine(Accelerate());
+        _jumpVelocity = jumpForce;
     }
     
-    private void FixedUpdate()
-    {
-        //  transform.rotation = Quaternion.Euler(0,0,rotSpeed * _moveDirection.y);
-        
-        if (_jumping) {
-            _moveDirection.y = jumpSpeed;
-        } else {
-            _moveDirection.y = 0;
+    private void FixedUpdate() {
+        if (!_isGrounded) {
+            transform.Rotate(0, 0, _moveDirection.y * rotationSpeed, Space.Self);    
         }
-        
-        _rb.linearVelocity = _moveDirection * moveSpeed;
+
+        _rb.linearVelocity = new Vector2(_moveDirection.x * moveSpeed, _jumpVelocity);
+
+        _jumpVelocity -= jumpDeceleration;
+        if (_jumpVelocity < 0) {
+            _jumpVelocity = 0;
+        }
 
         if (transform.position.y < -10) {
             canvas.GetComponent<gameOver>().gameOverScreen();
         }
     }
     
-    private IEnumerator Accelerate() {
-        _jumping = true;
-        
-        yield return new WaitForSecondsRealtime(jumpTime);
-        
-        _jumping = false;
-    }
-    
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Ground")) {
-           _isGrounded = true; 
+            _isGrounded = true; 
         }
     }
     
