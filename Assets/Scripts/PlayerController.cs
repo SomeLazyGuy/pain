@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpDeceleration = 5f;
     [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private GameObject canvas;
-    
+    [SerializeField] private bool airControl;
+
     private Rigidbody2D _rb;
     private Vector2 _moveDirection = Vector2.zero;
     private float _jumpVelocity;
@@ -37,8 +38,16 @@ public class PlayerController : MonoBehaviour {
             transform.Rotate(0, 0, _moveDirection.y * rotationSpeed, Space.Self);    
         }
 
-        _rb.linearVelocity = new Vector2(_moveDirection.x * moveSpeed, _jumpVelocity);
-
+        if (airControl) {
+            if (_isGrounded) {
+                _rb.linearVelocity = new Vector2(_moveDirection.x * moveSpeed, _jumpVelocity);
+            } else {
+                _rb.linearVelocity = new Vector2(0, _jumpVelocity);
+            } 
+        } else {
+            _rb.linearVelocity = new Vector2(_moveDirection.x * moveSpeed, _jumpVelocity); 
+        }
+        
         _jumpVelocity -= jumpDeceleration;
         if (_jumpVelocity < 0) {
             _jumpVelocity = 0;
