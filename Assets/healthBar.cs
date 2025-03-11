@@ -35,6 +35,12 @@ public class healthBar : MonoBehaviour {
             gameOver.gameOverScreen();
         }
     }
+    public void Heal(int healAmount)
+    {
+        _health = Mathf.Clamp(_health + healAmount, 0, _maxHealth);
+
+        UpdateHearts();
+    }
 
     public void UpdateHearts()
     {
