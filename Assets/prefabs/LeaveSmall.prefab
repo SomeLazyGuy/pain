@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2097409994019559891}
   - component: {fileID: -7575609606208252327}
   - component: {fileID: -8549368873875909456}
+  - component: {fileID: 820778712837135703}
   m_Layer: 0
   m_Name: LeaveSmall
   m_TagString: Collectable
@@ -166,3 +167,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &820778712837135703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468148119496314886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb775747e4f374410b7451f81a1691e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 5

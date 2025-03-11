@@ -39,8 +39,7 @@ public class PlayerController : MonoBehaviour {
         
         _rb.linearVelocity = _moveDirection * moveSpeed;
 
-        if (transform.position.y < -10)
-        {
+        if (transform.position.y < -10) {
             canvas.GetComponent<gameOver>().gameOverScreen();
         }
     }
