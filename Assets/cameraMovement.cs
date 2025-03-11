@@ -5,13 +5,14 @@ public class cameraMovement : MonoBehaviour
     public GameObject poi;
     public float camMoveSpeed = 1;
 
-    void Awake()
-    {
-        
-    }
+    private float xPos;
+    private float yPos;
 
     void Update()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, poi.transform.position, camMoveSpeed * Time.deltaTime);
+        xPos = Mathf.Lerp(transform.position.x, poi.transform.position.x, camMoveSpeed * Time.deltaTime);
+        yPos = Mathf.Lerp(transform.position.y, poi.transform.position.y, camMoveSpeed * Time.deltaTime);
+
+        transform.position = new Vector3(xPos, yPos, -10f);
     }
 }
