@@ -5,12 +5,12 @@ public class PlayerHealth : MonoBehaviour {
    [SerializeField] private healthBar healthBar;
    [SerializeField] private float immunityTime;
    
-   private PlayerController _playerController;
+   private PlayerStateMachine _playerStateMachine;
    private Animator _animator;
    private bool _isImmune;
    
    private void Start() {
-      _playerController = GetComponent<PlayerController>();
+      _playerStateMachine = GetComponent<PlayerStateMachine>();
       _animator = GetComponent<Animator>();
    }
    
@@ -21,12 +21,9 @@ public class PlayerHealth : MonoBehaviour {
       
       if (collision.gameObject.CompareTag("Obstacle")) {
          obstacle obstacle = collision.gameObject.GetComponent<obstacle>();
-         if (_playerController._isGroundPound)
-         {
-            healthBar.TakeDamage(2*obstacle.damageAmount);
-         }
-         else
-         {
+         if (_playerStateMachine.IsGrounded) {
+            healthBar.TakeDamage(2 * obstacle.damageAmount);
+         } else {
             healthBar.TakeDamage(obstacle.damageAmount);
          }
          StartCoroutine(Immunity());
