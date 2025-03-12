@@ -1,27 +1,24 @@
 using UnityEngine;
 
-public class JumpState : State
-{
+public class JumpState : State {
     private PlayerStateMachine _stateMachine;
     
-    override public void Entry(PlayerStateMachine stateMachine)
-    {
+    public override void Entry(PlayerStateMachine stateMachine) {
         Debug.Log("Jump Entry");
         _stateMachine = stateMachine;
         _stateMachine.JumpVelocity = _stateMachine.jumpForce;
     }
-    override public void Update()
-    {
+    
+    public override void Update() {
         _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x 
                                                        * _stateMachine.moveSpeed, _stateMachine.JumpVelocity);
+        _stateMachine.transform.Rotate(0, 0, _stateMachine.MoveDirection.y * _stateMachine.rotationSpeed, Space.Self);
         _stateMachine.JumpVelocity -= _stateMachine.jumpDeceleration;
-        if (_stateMachine.JumpVelocity < 0)
-        {
+        if (_stateMachine.JumpVelocity < 0) {
             _stateMachine.JumpVelocity = 0;
         }
     }
-    override public void Exit()
-    {
+    public override void Exit() {
         Debug.Log("Jump Exit");
     }
 }

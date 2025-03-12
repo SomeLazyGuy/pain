@@ -13,36 +13,59 @@ public class PlayerStateMachine : MonoBehaviour {
     private MoveState _moveState = new MoveState();
     private JumpState _jumpState = new JumpState();
     private FallState _fallState = new FallState();
-    private GroundPoundState _groudPoundState = new GroundPoundState();
+    private GroundPoundState _groundPoundState = new GroundPoundState();
     private State _currentState;
 
     public bool IsGrounded { get; private set; }
     public Vector2 MoveDirection { get; private set; }
     public Rigidbody2D Rb { get; private set; }
-    public float JumpVelocity { get; private set; }
+    public float JumpVelocity { get; set; }
     
     private void Awake() {
         _currentState = _idleState;
     }
     
-    private void MovePressed(InputAction.CallbackContext context) {
-        MoveDirection = context.ReadValue<Vector2>(); 
+    private void Start() {
+        Rb = GetComponent<Rigidbody2D>();
     }
     
-    private void JumpPressed(InputAction.CallbackContext context) {
+    public void MovePressed(InputAction.CallbackContext context) {
+        MoveDirection = context.ReadValue<Vector2>(); 
+        
+        if (MoveDirection.x == 0 && _currentState == _moveState) {
+            SwitchState(_idleState);
+        }
+    }
+    
+    public void JumpPressed(InputAction.CallbackContext context) {
         if (context.started) {
-            if (_currentState != _groudPoundState) {
-                SwitchState(_groudPoundState);
+            if (_currentState == _jumpState || _currentState == _fallState) {
+                SwitchState(_groundPoundState);
                 return;
             }
 
-            if (_currentState != _jumpState) {
+            if (_currentState == _idleState || _currentState == _moveState) {
                 SwitchState(_jumpState);
             }
         }
     }
     
     private void FixedUpdate() {
+        if (MoveDirection.x != 0 && _currentState == _idleState) {
+            SwitchState(_moveState);
+            return;
+        }
+        
+        if (_currentState == _moveState && !IsGrounded) {
+            SwitchState(_fallState);
+            return;
+        }
+        
+        if (_currentState == _jumpState && JumpVelocity == 0) {
+            SwitchState(_fallState);
+            return;
+        }
+        
         _currentState.Update();
     }
     
@@ -51,4 +74,32 @@ public class PlayerStateMachine : MonoBehaviour {
         _currentState = newState;
         _currentState.Entry(this);
     }
+    
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Ground")) {
+            IsGrounded = true;
+            
+            if (_currentState == _groundPoundState || _currentState == _fallState) {
+                SwitchState(_idleState);
+            }
+        } 
+        
+        if (other.CompareTag("Destructable")) {
+            if (_currentState == _groundPoundState) {
+                Destroy(other.gameObject);
+            } else {
+                IsGrounded = true;
+                SwitchState(_idleState);
+            }
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Ground")) {
+            IsGrounded = false; 
+        }
+        if (other.CompareTag("Destructable")) {
+            IsGrounded = false;
+        }
+    }    
 }
