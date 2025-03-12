@@ -1693,11 +1693,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1144771670753897744, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.63
+      value: -4.34
       objectReference: {fileID: 0}
     - target: {fileID: 1144771670753897744, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: -1.99
       objectReference: {fileID: 0}
     - target: {fileID: 1144771670753897744, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1735,22 +1735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1545186562012656873, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4668197026193049146, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 3555825792664016502}
-    - target: {fileID: 7568483450993150381, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8355354374728131628, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: points
       value: 
