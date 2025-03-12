@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
-public class IdleState : IState {
-    public void Entry(PlayerStateMachine stateMachine) {
+public class IdleState : State {
+    public override void Entry(PlayerStateMachine stateMachine) {
         Debug.Log("Idle_Entry");
     }
 
-    public void Update() {
+    public override void Update() {
         
     }
 
-    public void Exit() {
+    public override void Exit() {
         Debug.Log("Idle_Exit");
     }
 }
