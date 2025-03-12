@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-public class MoveState : State
-{
-
+public class FallState : State {
+    
     private PlayerStateMachine _stateMachine;
     
     override public void Entry(PlayerStateMachine stateMachine) {
-        Debug.Log("Move_Entry");
+        Debug.Log("Fall_Entry");
 
         _stateMachine = stateMachine;
   
@@ -15,9 +14,10 @@ public class MoveState : State
     override public void Update()
     {
         //_stateMachine.rb.linearVelocity = new Vector2(_stateMachine.moveDirection.x * _stateMachine.moveSpeed, 0);
+        //_stateMachine.transform.Rotate(0, 0, _stateMachine._moveDirection.y * _stateMachine.rotationSpeed, _stateMachine.Space.Self);
     }
 
     override public void Exit() {
-        Debug.Log("Move_Exit");
+        Debug.Log("Fall_Exit");
     }
 }
