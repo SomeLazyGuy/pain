@@ -13,8 +13,8 @@ public class FallState : State {
 
     override public void Update()
     {
-        //_stateMachine.rb.linearVelocity = new Vector2(_stateMachine.moveDirection.x * _stateMachine.moveSpeed, 0);
-        //_stateMachine.transform.Rotate(0, 0, _stateMachine._moveDirection.y * _stateMachine.rotationSpeed, _stateMachine.Space.Self);
+        _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x * _stateMachine.moveSpeed, 0);
+        _stateMachine.transform.Rotate(0, 0, _stateMachine.MoveDirection.y * _stateMachine.rotationSpeed, Space.Self);
     }
 
     override public void Exit() {

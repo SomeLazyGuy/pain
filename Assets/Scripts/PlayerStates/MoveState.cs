@@ -14,7 +14,7 @@ public class MoveState : State
 
     override public void Update()
     {
-        //_stateMachine.rb.linearVelocity = new Vector2(_stateMachine.moveDirection.x * _stateMachine.moveSpeed, 0);
+        _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x * _stateMachine.moveSpeed, 0);
     }
 
     override public void Exit() {
