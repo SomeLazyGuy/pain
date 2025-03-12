@@ -11,7 +11,5 @@ public class MoveState : State {
         _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x * _stateMachine.moveSpeed, 0);
     }
 
-    public override void Exit() {
-        Debug.Log("Move_Exit");
-    }
+    public override void Exit() { }
 }

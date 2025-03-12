@@ -5,7 +5,6 @@ public class FallState : State {
     private PlayerStateMachine _stateMachine;
     
     public override void Entry(PlayerStateMachine stateMachine) {
-        Debug.Log("Fall_Entry");
         _stateMachine = stateMachine;
     }
 
@@ -14,7 +13,5 @@ public class FallState : State {
         _stateMachine.transform.Rotate(0, 0, _stateMachine.MoveDirection.y * _stateMachine.rotationSpeed, Space.Self);
     }
 
-    public override void Exit() {
-        Debug.Log("Fall_Exit");
-    }
+    public override void Exit() { }
 }

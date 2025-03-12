@@ -4,7 +4,6 @@ public class JumpState : State {
     private PlayerStateMachine _stateMachine;
     
     public override void Entry(PlayerStateMachine stateMachine) {
-        Debug.Log("Jump Entry");
         _stateMachine = stateMachine;
         _stateMachine.JumpVelocity = _stateMachine.jumpForce;
     }
@@ -18,7 +17,5 @@ public class JumpState : State {
             _stateMachine.JumpVelocity = 0;
         }
     }
-    public override void Exit() {
-        Debug.Log("Jump Exit");
-    }
+    public override void Exit() { }
 }
