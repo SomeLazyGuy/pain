@@ -1,5 +1,5 @@
 public interface IState {
-    public void Entry();
+    public void Entry(PlayerStateMachine stateMachine);
     public void Update();
     public void Exit();
 }
