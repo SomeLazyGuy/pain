@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,7 @@ public class PlayerStateMachine : MonoBehaviour {
     public Vector2 MoveDirection { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public float JumpVelocity { get; set; }
+    public bool IsGroundPound { get; private set; }
     
     private void Awake() {
         _currentState = _idleState;
@@ -40,7 +42,13 @@ public class PlayerStateMachine : MonoBehaviour {
     public void JumpPressed(InputAction.CallbackContext context) {
         if (context.started) {
             if (_currentState == _jumpState || _currentState == _fallState) {
+                if (IsGrounded) {
+                    SwitchState(_jumpState);
+                    return;
+                }
+                
                 SwitchState(_groundPoundState);
+                IsGroundPound = true;
                 return;
             }
 
@@ -60,7 +68,7 @@ public class PlayerStateMachine : MonoBehaviour {
             SwitchState(_fallState);
             return;
         }
-        
+
         if (_currentState == _jumpState && JumpVelocity == 0) {
             SwitchState(_fallState);
             return;
@@ -79,8 +87,9 @@ public class PlayerStateMachine : MonoBehaviour {
         if (other.CompareTag("Ground")) {
             IsGrounded = true;
             
-            if (_currentState == _groundPoundState || _currentState == _fallState) {
+            if (_currentState == _groundPoundState || _currentState == _fallState || _currentState == _jumpState) {
                 SwitchState(_idleState);
+                IsGroundPound = false;
             }
         } 
         
@@ -93,7 +102,7 @@ public class PlayerStateMachine : MonoBehaviour {
             }
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Ground")) {
             IsGrounded = false; 
@@ -101,5 +110,5 @@ public class PlayerStateMachine : MonoBehaviour {
         if (other.CompareTag("Destructable")) {
             IsGrounded = false;
         }
-    }    
+    }
 }
