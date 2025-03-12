@@ -3,23 +3,22 @@ using UnityEngine;
 public class JumpState : State
 {
     private PlayerStateMachine _stateMachine;
-    private float _jumpVelocity;
+    public float jumpVelocity;
     
     override public void Entry(PlayerStateMachine stateMachine)
     {
         Debug.Log("Jump Entry");
         _stateMachine = stateMachine;
-        _jumpVelocity = _stateMachine._jumpForce;
+        jumpVelocity = _stateMachine.jumpForce;
     }
     override public void Update()
     {
-        _stateMachine._rb.linearVelocity = new Vector2(_stateMachine._moveDirection.x 
-                                                       * _stateMachine._moveSpeed, _jumpVelocity);
-        _jumpVelocity -= _stateMachine._jumpDeceleration;
-        if (_jumpVelocity < 0)
+        _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x 
+                                                       * _stateMachine.moveSpeed, jumpVelocity);
+        jumpVelocity -= _stateMachine.jumpDeceleration;
+        if (jumpVelocity < 0)
         {
-            _jumpVelocity = 0;
-            Exit();
+            jumpVelocity = 0;
         }
     }
     override public void Exit()
