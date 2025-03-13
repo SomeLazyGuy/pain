@@ -45,13 +45,16 @@ public class healthBar : MonoBehaviour {
     public void UpdateHearts()
     {
         for (int i = 0; i < _maxHealth; i++) {
-            if (i < _health) {
-                _hearts[i].GetComponent<Image>().color = new Color(1f, 0.08f, 0.55f);
+            if (i < _health)
+            {
+                _hearts[i].GetComponent<Image>().color = Color.white;
             } else
             {
                 _hearts[i].GetComponent<Image>().color = Color.gray;
             }
         }
+        
+        Debug.Log(_health);
     }
 
     private void InstantiateHearts() {
