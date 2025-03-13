@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class gameOver : MonoBehaviour
 {
    [SerializeField] private Text yourText;
-   [SerializeField] private Button restartButton;
+   [SerializeField] public Button restartButton;
    
    private PlayerHealth _playerHealth;
 
