@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      png-clipart-real-leaf-image-file-formats-leaf-thumbnail_0: -2939392637808252266
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

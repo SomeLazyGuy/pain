@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bigLeaf_0: -8546113120348972075
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
