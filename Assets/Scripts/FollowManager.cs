@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class FollowManager : MonoBehaviour
 {
-    [SerializeField] private PlayerCollect playerCollect;
     [SerializeField] private GameObject keyPlacebo;
+    
+    private GameObject player;
+    private PlayerCollect playerCollect;    
 
     //private List<GameObject> followers;
     private GameObject _follower;
 
-    public void OnEnable()
+    void Start()
     {
-        playerCollect.keyPickedUpEvent.AddListener(AddFollowKey);
-        playerCollect.doorOpenedEvent.AddListener(RemoveFollowKey);
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCollect = player.GetComponent<PlayerCollect>();
+        
+        playerCollect.keyPickedUpEvent.AddListener(AddFollowKey);    
+        playerCollect.doorOpenedEvent.AddListener(RemoveFollowKey);  
     }
+
+//   public void OnEnable()
+//   {
+//       playerCollect.keyPickedUpEvent.AddListener(AddFollowKey);
+//       playerCollect.doorOpenedEvent.AddListener(RemoveFollowKey);
+//   }
 
     private void AddFollowKey()
     {
-        _follower = Instantiate(keyPlacebo, transform.position, Quaternion.identity);
+        _follower = Instantiate(keyPlacebo, player.transform.position, Quaternion.identity);
     }
     private void RemoveFollowKey()
     {

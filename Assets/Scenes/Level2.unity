@@ -1315,6 +1315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yourText: {fileID: 542245098}
+  restartButton: {fileID: 1707811563}
 --- !u!50 &898653331
 Rigidbody2D:
   serializedVersion: 5
