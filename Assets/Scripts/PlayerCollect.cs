@@ -6,11 +6,11 @@ public class PlayerCollect : MonoBehaviour {
     [SerializeField] private Points points;
 
     public UnityEvent keyPickedUpEvent;
+    public UnityEvent doorOpenedEvent;
 
     private void Start() {
-        if (keyPickedUpEvent == null) {
-            keyPickedUpEvent = new UnityEvent();
-        }
+        keyPickedUpEvent ??= new UnityEvent();
+        doorOpenedEvent ??= new UnityEvent();    
     }
     
     private void OnTriggerStay2D(Collider2D other) {
@@ -29,6 +29,7 @@ public class PlayerCollect : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Door")) {
             other.gameObject.GetComponent<Door>().OpenDoor();
+            doorOpenedEvent.Invoke();
         }
     }
 }
