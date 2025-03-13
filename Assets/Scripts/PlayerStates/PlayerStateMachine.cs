@@ -9,13 +9,16 @@ public class PlayerStateMachine : MonoBehaviour {
     public float rotationSpeed = 1f;
     public float gravity = 9.81f;
     public float groundPoundMultiplier = 2;
+    public float sprintMultiplier = 2;
     
     private IdleState _idleState = new IdleState();
     private MoveState _moveState = new MoveState();
     private JumpState _jumpState = new JumpState();
     private FallState _fallState = new FallState();
     private GroundPoundState _groundPoundState = new GroundPoundState();
+    private SprintState _sprintState = new SprintState();
     private State _currentState;
+    private bool _isSprinting = false;
 
     public bool IsGrounded { get; private set; }
     public Vector2 MoveDirection { get; private set; }
@@ -33,7 +36,7 @@ public class PlayerStateMachine : MonoBehaviour {
     public void MovePressed(InputAction.CallbackContext context) {
         MoveDirection = context.ReadValue<Vector2>(); 
         
-        if (MoveDirection.x == 0 && _currentState == _moveState) {
+        if (MoveDirection.x == 0 && (_currentState == _moveState || _currentState == _sprintState)) {
             SwitchState(_idleState);
         }
     }
@@ -49,17 +52,28 @@ public class PlayerStateMachine : MonoBehaviour {
                 return;
             }
 
-            if (_currentState == _idleState || _currentState == _moveState) {
+            if (_currentState == _idleState || _currentState == _moveState || _currentState == _sprintState) {
                 SwitchState(_jumpState);
             }
         }
     }
     
+    public void SprintPressed(InputAction.CallbackContext context) {
+        if (context.started) {
+            _isSprinting = true;
+        } else if (context.canceled) {
+            _isSprinting = false;
+        }
+    }
+    
     private void FixedUpdate() {
-        Debug.Log(IsGrounded);
-        
         if (MoveDirection.x != 0 && _currentState == _idleState) {
             SwitchState(_moveState);
+            return;
+        }
+        
+        if (_currentState == _moveState && _isSprinting) {
+            SwitchState(_sprintState);
             return;
         }
         

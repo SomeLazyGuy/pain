@@ -1198,6 +1198,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1545186562012656873, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
   m_PrefabInstance: {fileID: 1230116599}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &815300498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4007140680303107992, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+  m_PrefabInstance: {fileID: 1230116599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815300490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85cae048aed0d436aa0de4f820c29774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &898653329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1749,34 @@ PrefabInstance:
     - target: {fileID: 4007140680303107992, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: stateText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 815300498}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SprintPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerStateMachine, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419111696913645166, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4668197026193049146, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: healthBar
