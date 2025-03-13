@@ -850,10 +850,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 80764491}
-    - target: {fileID: 4668197026193049146, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
-      propertyPath: immunityTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8355354374728131628, guid: 328568f3b3414448987e10dcdc9aafab, type: 3}
       propertyPath: points
       value: 
@@ -893,11 +889,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6268692076306777868, guid: 9c09707f5559f2943b2c33c842c535eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.454861
+      value: 10.8879
       objectReference: {fileID: 0}
     - target: {fileID: 6268692076306777868, guid: 9c09707f5559f2943b2c33c842c535eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.19306791
+      value: 0.4908
       objectReference: {fileID: 0}
     - target: {fileID: 6268692076306777868, guid: 9c09707f5559f2943b2c33c842c535eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1047,10 +1043,6 @@ PrefabInstance:
       objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     - target: {fileID: 6628395499327863575, guid: 22e17f6d75e56490eb93120b7581e9c0, type: 3}
       propertyPath: m_Name
-      value: Heart
-      objectReference: {fileID: 0}
-    - target: {fileID: 6628395499327863575, guid: 22e17f6d75e56490eb93120b7581e9c0, type: 3}
-      propertyPath: m_TagString
       value: Heart
       objectReference: {fileID: 0}
     m_RemovedComponents: []

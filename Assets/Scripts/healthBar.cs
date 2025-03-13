@@ -1,10 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class healthBar : MonoBehaviour {
-    [SerializeField] private gameOver gameOver;
-    [SerializeField] private int _maxHealth = 1;
-    public int _health = 1;
 
     [SerializeField] private GameObject _heart;
 
@@ -12,40 +10,37 @@ public class healthBar : MonoBehaviour {
 
     private GameObject[] _hearts;
 
-    void Awake()
+    private PlayerHealth _playerHealth;
+    
+
+    public void Start()
     {
-        _hearts = new GameObject[_maxHealth];
+        _playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        
+        _hearts = new GameObject[_playerHealth.maxHealth];
 
         InstantiateHearts();
-
-        _health = _maxHealth;
-
+        
         UpdateHearts();
-
+        
+        _playerHealth.updateHealthEvent.AddListener(UpdateHearts);
     }
 
-    public void TakeDamage(int damageAmount) {
+    //public void OnEnable()
+    //{
+    //    _playerHealth.updateHealthEvent.AddListener(UpdateHearts);
+    //}
 
-        _health -= damageAmount;
-
-        UpdateHearts();
-
-
-        if (_health <= 0) {
-            gameOver.gameOverScreen();
-        }
-    }
-    public void Heal(int healAmount)
+    public void OnDisable()
     {
-        _health = Mathf.Clamp(_health + healAmount, 0, _maxHealth);
-
-        UpdateHearts();
+        _playerHealth.updateHealthEvent.RemoveListener(UpdateHearts);
     }
-
-    public void UpdateHearts()
+    
+    private void UpdateHearts()
     {
-        for (int i = 0; i < _maxHealth; i++) {
-            if (i < _health)
+        
+        for (int i = 0; i < _playerHealth.maxHealth; i++) {
+            if (i < _playerHealth.currentHealth)
             {
                 _hearts[i].GetComponent<Image>().color = Color.white;
             } else
@@ -56,7 +51,7 @@ public class healthBar : MonoBehaviour {
     }
 
     private void InstantiateHearts() {
-        for (int i = 0; i < _maxHealth; i++)
+        for (int i = 0; i < _playerHealth.maxHealth; i++)
         {
             _hearts[i] = Instantiate(_heart, this.transform);
             _hearts[i].transform.position += new Vector3((i * (_spread + 60)), 0, 0);

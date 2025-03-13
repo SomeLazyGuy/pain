@@ -130,6 +130,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   immunityTime: 1
+  deathPlane: -15
+  maxHealth: 4
+  currentHealth: 0
+  playerDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  updateHealthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8355354374728131628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 0}
+  keyPickedUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4419111696913645166
 MonoBehaviour:
   m_ObjectHideFlags: 0
