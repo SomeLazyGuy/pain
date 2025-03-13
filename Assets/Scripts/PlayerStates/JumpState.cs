@@ -12,7 +12,7 @@ public class JumpState : State {
         _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x 
                                                        * _stateMachine.moveSpeed, _stateMachine.JumpVelocity);
         _stateMachine.transform.Rotate(0, 0, _stateMachine.MoveDirection.y * _stateMachine.rotationSpeed, Space.Self);
-        _stateMachine.JumpVelocity -= _stateMachine.jumpDeceleration;
+        _stateMachine.JumpVelocity -= _stateMachine.gravity;
         if (_stateMachine.JumpVelocity < 0) {
             _stateMachine.JumpVelocity = 0;
         }

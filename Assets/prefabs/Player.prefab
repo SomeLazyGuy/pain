@@ -109,10 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airControl: 1
   moveSpeed: 5
-  jumpForce: 10
-  jumpDeceleration: 0.2
+  jumpForce: 15
   rotationSpeed: 5
-  knockbackResistance: 5
+  gravity: 1.635
 --- !u!114 &4668197026193049146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +284,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 20
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

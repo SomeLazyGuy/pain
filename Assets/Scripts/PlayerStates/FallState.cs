@@ -9,8 +9,10 @@ public class FallState : State {
     }
 
     public override void Update() {
-        _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x * _stateMachine.moveSpeed, 0);
+        _stateMachine.Rb.linearVelocity = new Vector2(_stateMachine.MoveDirection.x * _stateMachine.moveSpeed, _stateMachine.JumpVelocity);
         _stateMachine.transform.Rotate(0, 0, _stateMachine.MoveDirection.y * _stateMachine.rotationSpeed, Space.Self);
+
+        _stateMachine.JumpVelocity -= _stateMachine.gravity;
     }
 
     public override void Exit() { }

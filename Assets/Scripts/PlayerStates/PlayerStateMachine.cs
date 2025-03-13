@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,9 +6,9 @@ public class PlayerStateMachine : MonoBehaviour {
     public bool airControl = true;
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
-    public float jumpDeceleration = 5f;
     public float rotationSpeed = 1f;
-    public float knockbackResistance = 5f;
+    public float gravity = 9.81f;
+    public float groundPoundMultiplier = 2;
     
     private IdleState _idleState = new IdleState();
     private MoveState _moveState = new MoveState();
@@ -21,10 +21,9 @@ public class PlayerStateMachine : MonoBehaviour {
     public Vector2 MoveDirection { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public float JumpVelocity { get; set; }
-    public bool IsGroundPound { get; private set; }
     
     private void Awake() {
-        _currentState = _idleState;
+        SwitchState(_idleState);
     }
     
     private void Start() {
@@ -43,12 +42,10 @@ public class PlayerStateMachine : MonoBehaviour {
         if (context.started) {
             if (_currentState == _jumpState || _currentState == _fallState) {
                 if (IsGrounded) {
-                    SwitchState(_jumpState);
-                    return;
+                   SwitchState(_jumpState);
+                   return;
                 }
-                
                 SwitchState(_groundPoundState);
-                IsGroundPound = true;
                 return;
             }
 
@@ -59,6 +56,8 @@ public class PlayerStateMachine : MonoBehaviour {
     }
     
     private void FixedUpdate() {
+        Debug.Log(IsGrounded);
+        
         if (MoveDirection.x != 0 && _currentState == _idleState) {
             SwitchState(_moveState);
             return;
@@ -68,7 +67,7 @@ public class PlayerStateMachine : MonoBehaviour {
             SwitchState(_fallState);
             return;
         }
-
+        
         if (_currentState == _jumpState && JumpVelocity == 0) {
             SwitchState(_fallState);
             return;
@@ -78,7 +77,9 @@ public class PlayerStateMachine : MonoBehaviour {
     }
     
     private void SwitchState(State newState) {
-        _currentState.Exit();
+        if (_currentState != null) {
+            _currentState.Exit();
+        }
         _currentState = newState;
         _currentState.Entry(this);
     }
@@ -87,9 +88,8 @@ public class PlayerStateMachine : MonoBehaviour {
         if (other.CompareTag("Ground")) {
             IsGrounded = true;
             
-            if (_currentState == _groundPoundState || _currentState == _fallState || _currentState == _jumpState) {
+            if (_currentState == _groundPoundState || _currentState == _fallState) {
                 SwitchState(_idleState);
-                IsGroundPound = false;
             }
         } 
         
@@ -102,7 +102,13 @@ public class PlayerStateMachine : MonoBehaviour {
             }
         }
     }
-
+    
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("Ground") || other.CompareTag("Destructable")) {
+            IsGrounded = true;
+        }
+    }
+    
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Ground")) {
             IsGrounded = false; 
@@ -110,5 +116,5 @@ public class PlayerStateMachine : MonoBehaviour {
         if (other.CompareTag("Destructable")) {
             IsGrounded = false;
         }
-    }
+    }    
 }
