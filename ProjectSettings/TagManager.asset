@@ -10,6 +10,7 @@ TagManager:
   - Heart
   - Destructable
   - Key
+  - Door
   layers:
   - Default
   - TransparentFX

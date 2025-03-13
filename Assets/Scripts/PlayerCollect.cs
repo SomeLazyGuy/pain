@@ -6,7 +6,8 @@ public class PlayerCollect : MonoBehaviour {
     [SerializeField] private Points points;
 
     public UnityEvent keyPickedUpEvent;
-
+    private int _keyCount;
+    
     private void Start() {
         if (keyPickedUpEvent == null) {
             keyPickedUpEvent = new UnityEvent();
@@ -23,12 +24,17 @@ public class PlayerCollect : MonoBehaviour {
         if (other.CompareTag("Key")) {
             Destroy(other.gameObject);
             keyPickedUpEvent.Invoke();
+            _keyCount++;
         }
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Door")) {
-            other.gameObject.GetComponent<Door>().OpenDoor();
+            if (_keyCount > 0)
+            {
+                other.gameObject.GetComponent<Door>().OpenDoor();
+                _keyCount--;
+            }
         }
     }
 }
