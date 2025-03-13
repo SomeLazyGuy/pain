@@ -114,6 +114,8 @@ MonoBehaviour:
   gravity: 1.635
   groundPoundMultiplier: 2
   sprintMultiplier: 2
+  dashSpeed: 20
+  dashTime: 10
 --- !u!114 &4668197026193049146
 MonoBehaviour:
   m_ObjectHideFlags: 0

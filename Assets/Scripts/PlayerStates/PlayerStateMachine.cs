@@ -10,6 +10,9 @@ public class PlayerStateMachine : MonoBehaviour {
     public float gravity = 9.81f;
     public float groundPoundMultiplier = 2;
     public float sprintMultiplier = 2;
+    public float dashSpeed = 20;
+    public int dashTime = 10;
+    
     
     private IdleState _idleState = new IdleState();
     private MoveState _moveState = new MoveState();
@@ -17,10 +20,12 @@ public class PlayerStateMachine : MonoBehaviour {
     private FallState _fallState = new FallState();
     private GroundPoundState _groundPoundState = new GroundPoundState();
     private SprintState _sprintState = new SprintState();
+    private DashState _dashState = new DashState();
     private State _currentState;
     private bool _isSprinting = false;
 
     public bool IsGrounded { get; private set; }
+    public bool IsDash { get; set; }
     public Vector2 MoveDirection { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public float JumpVelocity { get; set; }
@@ -60,7 +65,13 @@ public class PlayerStateMachine : MonoBehaviour {
     
     public void SprintPressed(InputAction.CallbackContext context) {
         if (context.started) {
-            _isSprinting = true;
+            if ((_currentState == _jumpState || _currentState == _fallState) && !IsDash) {
+                SwitchState(_dashState);
+            }
+            else
+            {
+                _isSprinting = true;
+            }
         } else if (context.canceled) {
             _isSprinting = false;
         }
@@ -83,6 +94,11 @@ public class PlayerStateMachine : MonoBehaviour {
         }
         
         if (_currentState == _jumpState && JumpVelocity == 0) {
+            SwitchState(_fallState);
+            return;
+        }
+        
+        if (_currentState == _dashState && !IsDash) {
             SwitchState(_fallState);
             return;
         }
