@@ -16,13 +16,16 @@ public class FollowManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerCollect = player.GetComponent<PlayerCollect>();
+        
+        playerCollect.keyPickedUpEvent.AddListener(AddFollowKey);    
+        playerCollect.doorOpenedEvent.AddListener(RemoveFollowKey);  
     }
 
-    public void OnEnable()
-    {
-        playerCollect.keyPickedUpEvent.AddListener(AddFollowKey);
-        playerCollect.doorOpenedEvent.AddListener(RemoveFollowKey);
-    }
+//   public void OnEnable()
+//   {
+//       playerCollect.keyPickedUpEvent.AddListener(AddFollowKey);
+//       playerCollect.doorOpenedEvent.AddListener(RemoveFollowKey);
+//   }
 
     private void AddFollowKey()
     {
