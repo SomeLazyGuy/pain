@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Follow : MonoBehaviour
@@ -13,7 +14,11 @@ public class Follow : MonoBehaviour
     private Vector2 targetPos;
     
     private Vector2 targetDirection;
-    
+
+    private void Awake() {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update() {
         targetDirection = transform.rotation * Direction;
         targetPos = new Vector2(Player.transform.position.x, Player.transform.position.y) + targetDirection * Radius;
