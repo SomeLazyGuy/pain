@@ -53,8 +53,6 @@ public class healthBar : MonoBehaviour {
                 _hearts[i].GetComponent<Image>().color = Color.gray;
             }
         }
-        
-        Debug.Log(_health);
     }
 
     private void InstantiateHearts() {

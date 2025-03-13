@@ -9,6 +9,7 @@ TagManager:
   - Collectable
   - Heart
   - Destructable
+  - Key
   layers:
   - Default
   - TransparentFX
