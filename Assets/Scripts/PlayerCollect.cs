@@ -8,6 +8,8 @@ public class PlayerCollect : MonoBehaviour {
     public UnityEvent keyPickedUpEvent;
     public UnityEvent doorOpenedEvent;
 
+    private int _keyCount;
+    
     private void Start() {
         keyPickedUpEvent ??= new UnityEvent();
         doorOpenedEvent ??= new UnityEvent();    
@@ -23,13 +25,17 @@ public class PlayerCollect : MonoBehaviour {
         if (other.CompareTag("Key")) {
             Destroy(other.gameObject);
             keyPickedUpEvent.Invoke();
+            _keyCount++;
         }
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Door")) {
-            other.gameObject.GetComponent<Door>().OpenDoor();
-            doorOpenedEvent.Invoke();
+            if (_keyCount > 0) {
+                other.gameObject.GetComponent<Door>().OpenDoor();
+                doorOpenedEvent.Invoke();
+                _keyCount--;
+            }
         }
     }
 }
