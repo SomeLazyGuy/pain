@@ -29,6 +29,7 @@ public class PlayerStateMachine : MonoBehaviour {
     public Vector2 MoveDirection { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public float JumpVelocity { get; set; }
+    public bool IsGroundPound { get; private set; }
     
     private void Awake() {
         SwitchState(_idleState);
@@ -54,6 +55,7 @@ public class PlayerStateMachine : MonoBehaviour {
                    return;
                 }
                 SwitchState(_groundPoundState);
+                IsGroundPound = true;
                 return;
             }
 
@@ -88,7 +90,7 @@ public class PlayerStateMachine : MonoBehaviour {
             return;
         }
         
-        if (_currentState == _moveState && !IsGrounded) {
+        if ((_currentState == _moveState || _currentState == _idleState) && !IsGrounded) {
             SwitchState(_fallState);
             return;
         }
@@ -120,6 +122,7 @@ public class PlayerStateMachine : MonoBehaviour {
             
             if (_currentState == _groundPoundState || _currentState == _fallState) {
                 SwitchState(_idleState);
+                IsGroundPound = false;
             }
         } 
         
