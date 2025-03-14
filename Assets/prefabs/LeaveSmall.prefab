@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -8549368873875909456}
   - component: {fileID: 820778712837135703}
   - component: {fileID: 3356530515434791336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeaveSmall
   m_TagString: Collectable
   m_Icon: {fileID: 0}

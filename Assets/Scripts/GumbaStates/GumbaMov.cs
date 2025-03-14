@@ -54,7 +54,7 @@ public class GumbaMov : MonoBehaviour
                 Destroy(gameObject);
             }
 
-            playerStateMachine.Rb.linearVelocity = new Vector2(0,50);
+            playerStateMachine.JumpVelocity = playerStateMachine.jumpForce / 2;
         }
     }
 }

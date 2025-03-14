@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 419854965771982712}
   - component: {fileID: 6982955221260378556}
   - component: {fileID: -2169992831333196182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spike
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

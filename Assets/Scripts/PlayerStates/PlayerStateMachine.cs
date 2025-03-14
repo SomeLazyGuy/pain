@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerStateMachine : MonoBehaviour {
@@ -12,7 +14,8 @@ public class PlayerStateMachine : MonoBehaviour {
     public float sprintMultiplier = 2;
     public float dashSpeed = 20;
     public int dashTime = 10;
-    
+
+    [HideInInspector] public UnityEvent<String> switchStateEvent;
     
     private IdleState _idleState = new IdleState();
     private MoveState _moveState = new MoveState();
@@ -37,6 +40,7 @@ public class PlayerStateMachine : MonoBehaviour {
     
     private void Start() {
         Rb = GetComponent<Rigidbody2D>();
+        switchStateEvent ??= new UnityEvent<String>();
     }
     
     public void MovePressed(InputAction.CallbackContext context) {
@@ -114,6 +118,7 @@ public class PlayerStateMachine : MonoBehaviour {
         }
         _currentState = newState;
         _currentState.Entry(this);
+        switchStateEvent.Invoke(_currentState.GetType().Name);
     }
     
     private void OnTriggerEnter2D(Collider2D other) {

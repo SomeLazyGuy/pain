@@ -155,6 +155,9 @@ MonoBehaviour:
   keyPickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
+  doorOpenedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4419111696913645166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +389,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

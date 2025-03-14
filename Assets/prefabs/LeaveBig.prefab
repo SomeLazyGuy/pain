@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8406028233283691818}
   - component: {fileID: 378352945855488170}
   - component: {fileID: 1204241880914164762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeaveBig
   m_TagString: Collectable
   m_Icon: {fileID: 0}
